@@ -1,0 +1,12 @@
+version: '3'
+services:
+  api:
+    image: jmu10/rust-ci-cd-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+volumes:
+  db:
+    driver: local
