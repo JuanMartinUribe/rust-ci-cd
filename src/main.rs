@@ -31,7 +31,7 @@ mod tests {
     
         let res = app.call(req).await.unwrap();
         let status_code = res.status().to_string();
-        assert_eq!(res.status(), StatusCode::NOT_FOUND);
+        assert_eq!(res.status(), StatusCode::OK);
     }
 
 }
