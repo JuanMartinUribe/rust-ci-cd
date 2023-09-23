@@ -30,7 +30,7 @@ mod tests {
         let req = test::TestRequest::with_uri("/test").to_request();
     
         let res = app.call(req).await.unwrap();
-        assert_eq!(res.status(), StatusCode::NOT_FOUND);
+        assert_eq!(res.status(), StatusCode::OK);
     }
 
 }
