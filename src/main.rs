@@ -1,8 +1,8 @@
-use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
+use actix_web::{get, App, HttpResponse, HttpServer, Responder};
 
 #[get("/")]
 async fn hello() -> impl Responder {
-    HttpResponse::Ok().body("Hola Mundo!!!")
+    HttpResponse::Ok().body("Hello World!!!")
 }
 
 #[actix_web::main]
@@ -17,7 +17,7 @@ async fn main() -> std::io::Result<()> {
 }
 #[cfg(test)]
 mod tests {
-    use actix_web::{test, web, App, HttpResponse, http::StatusCode};
+    use actix_web::{test, web, App, http::StatusCode};
     use actix_service::Service;
 
     #[actix_web::test]
@@ -30,7 +30,6 @@ mod tests {
         let req = test::TestRequest::with_uri("/test").to_request();
     
         let res = app.call(req).await.unwrap();
-        let status_code = res.status().to_string();
         assert_eq!(res.status(), StatusCode::OK);
     }
 
