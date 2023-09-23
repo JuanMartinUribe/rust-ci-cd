@@ -2,7 +2,7 @@ use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
 
 #[get("/")]
 async fn hello() -> impl Responder {
-    HttpResponse::Ok().body("Hello world!!!")
+    HttpResponse::Ok().body("Hola Mundo!!!")
 }
 
 #[actix_web::main]
@@ -20,19 +20,17 @@ mod tests {
     use actix_web::{test, web, App, HttpResponse, http::StatusCode};
     use actix_service::Service;
 
-
     #[actix_web::test]
     async fn test_init_service() {
         let app = test::init_service(
             App::new()
-                .service(web::resource("/").to(|| async { "OK" }))
+                .service(web::resource("/test").to(|| async { "OK" }))
         ).await;
     
-        // Create request object
         let req = test::TestRequest::with_uri("/test").to_request();
     
-        // Execute application
         let res = app.call(req).await.unwrap();
+        let status_code = res.status().to_string();
         assert_eq!(res.status(), StatusCode::NOT_FOUND);
     }
 
